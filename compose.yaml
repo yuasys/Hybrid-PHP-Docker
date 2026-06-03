@@ -1,0 +1,26 @@
+services:
+  # バックエンド: PHP + Apache(httpd) + SQLite + Vim + HTMX
+  backend:
+    build: ./backend
+    container_name: app-backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./backend/src:/var/www/html
+      - ./db:/var/www/db          # SQLite用のデータ永続化
+    environment:
+      - TZ=Asia/Tokyo
+
+
+  # フロントエンド: Node.js + Vue.js
+  frontend:
+    build: ./frontend
+    container_name: app-frontend
+    ports:
+      - "5173:5173"               # Vite (Vue) の開発用ポート
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules         # ホスト側のnode_modulesを上書きしない
+    environment:
+      - TZ=Asia/Tokyo
+    command: npm run dev -- --host
