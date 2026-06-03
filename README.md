@@ -34,3 +34,10 @@ docker compose up --build
 
 ## Git / GitHub
 リポジトリは GitHub にプッシュされています。初回セットアップや README の追記、CI の追加などご要望があれば対応します。
+
+## 今回行ったこと
+- GitHub に `yuasys/Hybrid-PHP-Docker` リポジトリを作成し、`main` ブランチへプッシュしました。
+- `.gitignore` を追加して、`node_modules` や SQLite データベースファイルなどを除外しました。
+- `README.md` を追加しました。
+- `/.github/workflows/ci.yml` を追加し、GitHub Actions で `frontend` のビルドと `backend` の PHP チェックを実行する CI を導入しました。
+- `main` ブランチに対してブランチ保護を設定し、PR ベースのマージと必須レビュー、CI チェックの合格を要求するようにしました。
